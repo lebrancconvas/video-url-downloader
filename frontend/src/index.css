@@ -7,9 +7,34 @@
 
 header {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 form {
   font-size: 24px;
-  margin: 0 auto;
+  width: 50vw;
+  margin: 0 36%;
+}
+
+
+input[type="url"] {
+  background: transparent;
+  outline: none;
+  border-bottom: 3px solid rgb(132, 144, 255);
+  width: 50%;
+}
+
+input[type="url"]:focus {
+  border-bottom: 3px solid blue;
+}
+
+input[type="submit"] {
+  background: rgb(72, 148, 255);
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 12px 3px;
+}
+
+input[type="submit"]:active {
+  transform: scale(0.97);
 }
