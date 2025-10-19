@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./index.css";
 
 export function App() {
   const [videoURL, setVideoURL] = useState<string>("");
 
-  const handleConvert = (e: React.FormEvent) => {
+  const handleConvert = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('URL: ', videoURL);
+    await axios.post("http://localhost:8001/download", {
+      videoURL
+    }); 
   };
 
   return (
