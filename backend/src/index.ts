@@ -4,6 +4,29 @@ import { cors } from "@elysiajs/cors";
 const app = new Elysia()
   .use(cors())
   .get("/", () => "Hello Elysia")
+  .get("/video", async ({ query, set }) => {
+    const { video_url } = query;
+
+    if(!video_url) {
+      set.status = 400;
+      return {
+        error: "Video URL is undefined."
+      };
+    }
+
+    const titleProc = Bun.spawnSync(["yt-dlp", video_url, "--get-title"]);
+    const title = (await new Response(titleProc.stdout).text()).trim() || "";
+    return {
+      message: "Get Video Data Success.",
+      data: {
+        title
+      }
+    }
+  }, {
+    query: t.Object({
+      video_url: t.String({ format: "uri" })
+    })
+  })
   .post("/download", ({ body, set }) => {
     // const getTitleScript = ["yt-dlp", "get-title", body.videoURL];
     const downloadScript = ["yt-dlp", body.videoURL, "-t", "mp4"];
