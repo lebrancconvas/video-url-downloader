@@ -1,0 +1,15 @@
+{
+  "name": "video-downloader",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "bun --cwd=frontend run dev",
+    "dev:backend": "bun --cwd=backend run dev",
+    "build": "bun --cwd frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^g"
+  }
+}
